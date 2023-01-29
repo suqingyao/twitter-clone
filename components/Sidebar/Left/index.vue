@@ -25,6 +25,13 @@
 
       <SidebarLeftTab>
         <template #icon>
+          <div class="i-heroicons-bell" />
+        </template>
+        <template #name> Notifications </template>
+      </SidebarLeftTab>
+
+      <SidebarLeftTab>
+        <template #icon>
           <div class="i-heroicons-inbox" />
         </template>
         <template #name> Messages </template>
@@ -35,6 +42,13 @@
           <div class="i-heroicons-bookmark" />
         </template>
         <template #name> Bookmarks </template>
+      </SidebarLeftTab>
+
+      <SidebarLeftTab>
+        <template #icon>
+          <div class="i-heroicons:document-text" />
+        </template>
+        <template #name> Lists </template>
       </SidebarLeftTab>
 
       <SidebarLeftTab>
