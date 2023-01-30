@@ -36,6 +36,6 @@ export default defineConfig({
   },
   shortcuts: {
     'default-transition': 'transition ease-in-out duration-350',
-    'twitter-border-color': 'border-white-200 dark:border-gray-700'
+    'twitter-border-color': 'border-white dark:border-gray-700'
   }
 })

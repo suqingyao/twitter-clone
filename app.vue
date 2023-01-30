@@ -16,8 +16,8 @@ const darkMode = ref(false)
             </div>
           </div>
           <!-- MAIN CONTENT -->
-          <main class="col-span-12 md:col-span-8 xl:col-span-4 bg-red-500">
-            <h1>ads</h1>
+          <main class="col-span-12 marker:md:col-span-8 xl:col-span-4">
+            <router-view />
           </main>
           <!-- RIGHT SIDEBAR -->
           <div class="hidden md:block xl:col-span-4 md:col-span-3">
