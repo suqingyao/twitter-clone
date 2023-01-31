@@ -1,9 +1,10 @@
-<script lang="ts" setup>
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div class="flex h-screen flex-col">
-    <div class="my-2 w-min rounded-full p-2 hover:bg-blue-50 dark:hover:bg-white/20 default-transition">
+    <div
+      class="my-2 w-min rounded-full p-2 hover:bg-blue-50 dark:hover:bg-white/20 default-transition"
+    >
       <NuxtLink to="/">
         <LogoTwitter class="h-8 w-8" />
       </NuxtLink>
@@ -68,6 +69,4 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
