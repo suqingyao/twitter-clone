@@ -1,5 +1,5 @@
-import { prisma } from '.'
 import bcrypt from 'bcrypt'
+import { prisma } from '.'
 
 export const createUser = (userData: {
   name: string
@@ -21,5 +21,11 @@ export const createUser = (userData: {
 export const getUserByUsername = (username: string) => {
   return prisma.user.findUnique({
     where: { username }
+  })
+}
+
+export const getUserById = (userId: string) => {
+  return prisma.user.findUnique({
+    where: { id: userId }
   })
 }

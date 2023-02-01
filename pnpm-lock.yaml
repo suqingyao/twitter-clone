@@ -10,14 +10,18 @@ specifiers:
   '@unocss/reset': ^0.49.1
   bcrypt: ^5.1.0
   jsonwebtoken: ^9.0.0
+  jwt-decode: ^3.1.2
   nuxt: ^3.1.0
   prettier: ^2.8.3
   prisma: ^4.9.0
+  url-pattern: ^1.0.3
 
 dependencies:
   '@heroicons/vue': 2.0.14
   bcrypt: 5.1.0
   jsonwebtoken: 9.0.0
+  jwt-decode: 3.1.2
+  url-pattern: 1.0.3
 
 devDependencies:
   '@iconify-json/heroicons': 1.1.8
@@ -3194,6 +3198,10 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
+  /jwt-decode/3.1.2:
+    resolution: {integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==}
+    dev: false
+
   /klona/2.0.6:
     resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
     engines: {node: '>= 8'}
@@ -4977,6 +4985,11 @@ packages:
       escalade: 3.1.1
       picocolors: 1.0.0
     dev: true
+
+  /url-pattern/1.0.3:
+    resolution: {integrity: sha512-uQcEj/2puA4aq1R3A2+VNVBgaWYR24FdWjl7VNW83rnWftlhyzOZ/tBjezRiC2UkIzuxC8Top3IekN3vUf1WxA==}
+    engines: {node: '>=0.12.0'}
+    dev: false
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}

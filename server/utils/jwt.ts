@@ -1,6 +1,6 @@
 import { RefreshToken, User } from '@prisma/client'
-import jwt from 'jsonwebtoken'
 import { H3Event } from 'h3'
+import jwt from 'jsonwebtoken'
 
 const generateAccessToken = (user: User) => {
   const config = useRuntimeConfig()
@@ -26,6 +26,24 @@ const generateRefreshToken = (user: User) => {
       expiresIn: '4h'
     }
   )
+}
+
+export const decodeRefreshToken = (token: RefreshToken['token']) => {
+  const config = useRuntimeConfig()
+  try {
+    return jwt.verify(token, config.jwtRefreshSecret)
+  } catch (error) {
+    return null
+  }
+}
+
+export const decodeAccessToken = (token: RefreshToken['token']) => {
+  const config = useRuntimeConfig()
+  try {
+    return jwt.verify(token, config.jwtAccessSecret)
+  } catch (error) {
+    return null
+  }
 }
 
 export const generateTokens = (user: User) => {
