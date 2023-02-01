@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@heroicons/vue': ^2.0.14
   '@iconify-json/heroicons': ^1.1.8
   '@prisma/client': ^4.9.0
   '@types/bcrypt': ^5.0.0
@@ -20,7 +19,6 @@ specifiers:
   url-pattern: ^1.0.3
 
 dependencies:
-  '@heroicons/vue': 2.0.14
   bcrypt: 5.1.0
   cloudinary: 1.33.0
   formidable: 2.1.1
@@ -765,12 +763,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@heroicons/vue/2.0.14:
-    resolution: {integrity: sha512-pA1MLZPX0pyZdaQ5OHD/ILE8V/JCXyWvY2BQig7ZnYO7ZFap9sp969Qasn+1VWxnzB5BLWWcYu80OJPCboWo+g==}
-    peerDependencies:
-      vue: '>= 3'
-    dev: false
 
   /@iconify-json/heroicons/1.1.8:
     resolution: {integrity: sha512-AlfKxl5MRYxSpT5FRa7FiTKneR15ptvNvxU3OY8szK8115uUBkSlFCuOUZPMUcUxnhkDrhriPqScc5TAv1hBNA==}

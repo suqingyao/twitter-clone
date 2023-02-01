@@ -21,7 +21,6 @@
     "prisma": "^4.9.0"
   },
   "dependencies": {
-    "@heroicons/vue": "^2.0.14",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.33.0",
     "formidable": "^2.1.1",
