@@ -1,16 +1,10 @@
 <script lang="ts" setup>
-const props = defineProps({
-  active: {
-    type: Boolean,
-    default: false
-  },
-  to: {
-    type: String,
-    default: ''
-  }
-})
+const { active, to } = defineProps<{
+  active: boolean
+  to?: string
+}>()
 
-const textCls = computed(() => (props.active ? 'font-semibold' : 'font-normal'))
+const textCls = computed(() => (active ? 'font-semibold' : 'font-normal'))
 </script>
 
 <template>

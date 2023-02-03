@@ -29,9 +29,13 @@ export default defineEventHandler(async (event) => {
   const tweet = await createTweet(tweetData)
 
   const filePromises = Object.keys(files).map(async (key) => {
+    const file = files[key] as formidable.File
+
+    const cloudinaryResource = await uploadToCloudinary(file.filepath)
+
     return createMediaFile({
-      url: '',
-      // providerPublicId: 'random_id',
+      url: cloudinaryResource.secret_url,
+      providerPublicId: cloudinaryResource.public_id,
       userId: userId,
       tweetId: tweet.id
     })

@@ -1,24 +1,19 @@
 <script lang="ts" setup>
-const { modelValue, type, placeholder, label } = defineProps({
-  modelValue: {
-    type: String,
-    required: true
-  },
-  label: {
-    type: String,
-    default: null
-  },
-  placeholder: {
-    type: String,
-    default: ''
-  },
-  type: {
-    type: String,
-    default: 'text'
-  }
-})
+const {
+  modelValue,
+  type = 'text',
+  placeholder,
+  label
+} = $defineProps<{
+  modelValue: string
+  label: string
+  placeholder: string
+  type?: string
+}>()
 
-const emits = defineEmits(['update:modelValue'])
+const emits = defineEmits<{
+  (event: 'update:modelValue', data: unknown): void
+}>()
 </script>
 
 <template>

@@ -1,14 +1,8 @@
 <script lang="ts" setup>
-const { title, loading } = defineProps({
-  title: {
-    type: String,
-    required: true
-  },
-  loading: {
-    type: Boolean,
-    required: true
-  }
-})
+const { title, loading } = defineProps<{
+  title: string
+  loading: boolean
+}>()
 </script>
 
 <template>

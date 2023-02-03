@@ -6,7 +6,7 @@ export type MediaFileDto = {
   tweetId: string
 }
 
-export const createMediaFile = (mediaFile: MediaFileDto) => {
+export const createMediaFile = <T extends MediaFileDto>(mediaFile: T) => {
   return prisma.mediaFile.create({
     data: mediaFile
   })

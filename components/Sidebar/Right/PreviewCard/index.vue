@@ -1,10 +1,5 @@
 <script lang="ts" setup>
-const { title } = defineProps({
-  title: {
-    type: String,
-    required: true
-  }
-})
+const { title } = defineProps<{ title: string }>()
 </script>
 
 <template>
