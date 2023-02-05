@@ -1,4 +1,8 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+defineOptions({
+  name: 'SidebarLeft'
+})
+</script>
 
 <template>
   <div class="flex h-screen flex-col">
@@ -72,8 +76,8 @@
         </UIButton>
       </div>
       <div class="block xl:hidden">
-        <UIButton>
-          <div class="w-6 h-6 font-bold">
+        <UIButton size="sm">
+          <div class="font-bold">
             <div class="i-heroicons-pencil" />
           </div>
         </UIButton>

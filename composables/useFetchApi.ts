@@ -3,7 +3,7 @@ export default (url: string, options?: any) => {
   return $fetch(url, {
     ...options,
     headers: {
-      ...options.headers,
+      ...options?.headers,
       Authorization: `Bearer ${useAuthToken().value}`
     }
   })

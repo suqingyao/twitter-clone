@@ -8,7 +8,7 @@ const { tweets } = defineProps<{
 const isEmptyArray = computed(() => tweets.length === 0)
 </script>
 <template>
-  <div>
+  <div class="h-auto">
     <div v-if="isEmptyArray">
       <p class="text-center text-gray-500">No tweets were found</p>
     </div>

@@ -22,17 +22,15 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div>
-    <MainSection title="Home" :loading="loading">
-      <Head>
-        <Title>Home / Twitter</Title>
-      </Head>
+  <MainSection title="Home" :loading="loading">
+    <Head>
+      <Title>Home / Twitter</Title>
+    </Head>
 
-      <div class="border-b twitter-border-color">
-        <TweetForm :user="user" />
-      </div>
+    <div class="border-b twitter-border-color">
+      <TweetForm :user="user" />
+    </div>
 
-      <TweetListFeed :tweets="homeTweets" />
-    </MainSection>
-  </div>
+    <TweetListFeed :tweets="homeTweets" />
+  </MainSection>
 </template>

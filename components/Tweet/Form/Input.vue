@@ -53,7 +53,7 @@ const handleImageChange = (event: Event) => {
         <textarea
           v-model="text"
           placeholder="What's on your mind?"
-          class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring"
+          class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-none dark:text-white focus:ring outline-none p-1"
         />
       </div>
     </div>
@@ -74,30 +74,31 @@ const handleImageChange = (event: Event) => {
       />
     </div>
     <!-- Icons -->
-    <div class="flex p-2 pl-14">
-      <div class="flex w-full text-white">
+    <div class="flex p-2 pl-14 items-center">
+      <div class="flex w-full text-white h-auto">
         <div
-          class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
+          class="p-2 text-blue-400 rounded-full hover:bg-blue-50 dark:hover:bg-dim-800 cursor-pointer"
+          @click="handleImageClick"
         >
-          <IconImageFrame @click="handleImageClick" />
+          <IconImageFrame />
         </div>
         <div
-          class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
+          class="p-2 text-blue-400 rounded-full hover:bg-blue-50 dark:hover:bg-dim-800 cursor-pointer"
         >
           <IconGif />
         </div>
         <div
-          class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
+          class="p-2 text-blue-400 rounded-full hover:bg-blue-50 dark:hover:bg-dim-800 cursor-pointer"
         >
           <IconChat />
         </div>
         <div
-          class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
+          class="p-2 text-blue-400 rounded-full hover:bg-blue-50 dark:hover:bg-dim-800 cursor-pointer"
         >
           <IconEmoji />
         </div>
         <div
-          class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
+          class="p-2 text-blue-400 rounded-full hover:bg-blue-50 dark:hover:bg-dim-800 cursor-pointer"
         >
           <IconCalendar />
         </div>
@@ -106,7 +107,6 @@ const handleImageChange = (event: Event) => {
         <UIButton size="sm" :disabled="isDisabled" @on-click="handleFormSubmit">
           <span class="font-bold"> Tweet </span>
         </UIButton>
-        <!-- <button type="button" @click="handleFormSubmit">Tweet</button> -->
       </div>
     </div>
   </div>

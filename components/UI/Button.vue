@@ -16,11 +16,11 @@ const emits = defineEmits<{
 const paddingClasses = computed(() => {
   switch (size) {
     case 'sm':
-      return 'px-2 py-3'
+      return 'px-3 py-2'
     case 'lg':
-      return 'px-4 py-3'
+      return 'px-5 py-2'
     default:
-      return 'px-3 py-3'
+      return 'px-4 py-2'
   }
 })
 
@@ -51,7 +51,7 @@ const handleClick = (event: MouseEvent) => {
 
 <template>
   <button
-    class="flex justify-center text-white bg-blue-400 px-2 py-4 rounded-full hover:bg-blue-500 font-medium disabled:bg-blue-300 disabled:cursor-not-allowed"
+    class="flex justify-center text-white bg-blue-400 rounded-full hover:bg-blue-500 font-medium disabled:bg-blue-300 disabled:cursor-not-allowed disabled:hover:bg-blue-300"
     :disabled="disabled"
     :class="classes"
     @click="handleClick"

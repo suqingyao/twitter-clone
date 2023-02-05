@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+defineOptions({
+  name: 'SidebarRight'
+})
 const whatsHappeningItems = ref<Array<{ title: string; count: string }>>([
   {
     title: 'SpaceX',

@@ -17,16 +17,16 @@ onBeforeMount(() => {
       <!-- APP -->
       <div v-else-if="user" class="min-h-full">
         <div
-          class="lg:gap-10 mx-auto grid grid-cols-12 sm:px-6 lg:max-w-7xl lg:px-8"
+          class="mx-auto grid grid-cols-12 sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5"
         >
           <!-- LEFT SIDEBAR -->
-          <div class="hidden md:block sm:col-span-1 xl:col-span-2">
+          <div class="hidden md:block xs:col-span-1 xl:col-span-2">
             <div class="sticky top-0">
               <SidebarLeft />
             </div>
           </div>
           <!-- MAIN CONTENT -->
-          <main class="col-span-12 marker:md:col-span-8 xl:col-span-4">
+          <main class="col-span-12 md:col-span-8 xl:col-span-6">
             <router-view />
           </main>
           <!-- RIGHT SIDEBAR -->

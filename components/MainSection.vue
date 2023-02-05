@@ -6,7 +6,7 @@ const { title, loading } = defineProps<{
 </script>
 
 <template>
-  <div class="border-x twitter-border-color">
+  <div class="border-x twitter-border-color h-screen">
     <div
       class="sticky top-0 px-4 py-3 text-white/80 backdrop-blur-md dark:bg-dim-900/80"
     >

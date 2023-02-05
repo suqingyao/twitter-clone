@@ -5,7 +5,12 @@ import { getUserById } from '../db/users'
 import { decodeAccessToken } from '../utils/jwt'
 
 export default defineEventHandler(async (event: H3Event) => {
-  const endpoints = ['/api/auth/user', '/api/user/tweets', '/api/tweets']
+  const endpoints = [
+    '/api/auth/user',
+    '/api/user/tweets',
+    '/api/tweets',
+    '/api/tweets/:id'
+  ]
 
   const isHandleByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint)
