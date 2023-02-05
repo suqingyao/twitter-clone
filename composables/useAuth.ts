@@ -32,7 +32,7 @@ export default () => {
   }) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const data = await $fetch('/api/auth/login', {
+        const data = await useFetchApi('/api/auth/login', {
           method: 'POST',
           body: {
             username,

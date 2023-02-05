@@ -1,7 +1,7 @@
 import {
   defineConfig,
-  presetUno,
   presetIcons,
+  presetUno,
   presetWebFonts,
   transformerDirectives
 } from 'unocss'
@@ -32,8 +32,29 @@ export default defineConfig({
         800: '#162d40',
         900: '#15202b'
       }
+    },
+    breakpoints: {
+      xs: '614px',
+      sm: '1002px',
+      md: '1022px',
+      lg: '1092px',
+      xl: '1280px'
     }
   },
+  safelist: [
+    'group-hover:text-red-100',
+    'group-hover:text-red-400',
+    'group-hover:text-blue-100',
+    'group-hover:text-blue-400',
+    'group-hover:text-green-100',
+    'group-hover:text-green-400',
+    'group-hover:bg-red-100',
+    'group-hover:bg-red-400',
+    'group-hover:bg-blue-100',
+    'group-hover:bg-blue-400',
+    'group-hover:bg-green-100',
+    'group-hover:bg-green-400'
+  ],
   shortcuts: {
     'default-transition': 'transition ease-in-out duration-350',
     'twitter-border-color': 'border-white dark:border-gray-700'

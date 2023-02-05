@@ -12,7 +12,7 @@ onBeforeMount(async () => {
   loading.value = true
   try {
     const { tweets } = await getHomeTweets()
-    homeTweets.value = tweets
+    homeTweets.value = tweets as any
   } catch (error) {
     console.error(error)
   } finally {

@@ -1,8 +1,8 @@
-import { userTransformer } from '~~/server/transformers/user'
-import { getUserByUsername } from '~~/server/db/users'
-import { generateTokens, sendRefreshToken } from '~~/server/utils/jwt'
-import { createRefreshToken } from '~~/server/db/refreshTokens'
 import bcrypt from 'bcrypt'
+import { createRefreshToken } from '~~/server/db/refreshTokens'
+import { getUserByUsername } from '~~/server/db/users'
+import { userTransformer } from '~~/server/transformers/user'
+import { generateTokens, sendRefreshToken } from '~~/server/utils/jwt'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -21,18 +21,19 @@ export default defineEventHandler(async (event) => {
 
   // Is the user registered
   const user = await getUserByUsername(username)
+
   if (!user) {
     return sendError(
       event,
       createError({
         statusCode: 400,
-        statusMessage: 'Username or password is invalid'
+        statusMessage: 'User is not existing'
       })
     )
   }
 
   // Compare password
-  const doesThePasswordMatch = await bcrypt.compare(password, password)
+  const doesThePasswordMatch = await bcrypt.compare(password, user.password)
 
   if (!doesThePasswordMatch) {
     return sendError(

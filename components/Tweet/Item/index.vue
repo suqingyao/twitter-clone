@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-import { Tweet } from '@prisma/client'
-
 const { tweet } = defineProps<{
-  tweet: Tweet
+  tweet: any
 }>()
 </script>
 
@@ -21,7 +19,7 @@ const { tweet } = defineProps<{
         <img :src="image.url" alt="" class="w-full rounded-2xl" />
       </div>
       <div class="mt-2">
-        <TweetItemActions />
+        <TweetItemActions :tweet="tweet" />
       </div>
     </div>
   </div>
