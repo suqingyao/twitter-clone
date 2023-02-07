@@ -1,9 +1,14 @@
 import { Tweet } from '@prisma/client'
 
 export default () => {
-  const postTweet = (formData: { text: string; mediaFiles: File[] }) => {
+  const postTweet = (formData: {
+    text: string
+    replyTo: any
+    mediaFiles: File[]
+  }) => {
     const form = new FormData()
     form.append('text', formData.text)
+    form.append('replyTo', formData.replyTo)
 
     formData.mediaFiles.forEach((mediaFile, index) => {
       form.append('media_file' + index, mediaFile)
@@ -11,7 +16,7 @@ export default () => {
     return useFetchApi('/api/user/tweets', {
       method: 'POST',
       body: form
-    })
+    }) as Promise<{ tweet: Tweet }>
   }
 
   const getHomeTweets = (): Promise<{ tweets: Tweet }> => {

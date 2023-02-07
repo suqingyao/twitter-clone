@@ -1,39 +1,52 @@
 <script lang="ts" setup>
-const { tweet } = defineProps<{
+const { tweet, compact = false } = defineProps<{
   tweet: {
     repliesCount: number
   }
+  compact?: boolean
 }>()
 
 const generateRandomNumber = () => {
   return Math.floor(Math.random() * 100)
 }
+
+const showStats = computed(() => compact)
+
+const size = computed(() => (compact ? 5 : 8))
 </script>
 <template>
   <div class="flex items-center justify-around w-full">
-    <TweetItemActionsIcon color="blue">
+    <TweetItemActionsIcon color="blue" :size="size">
       <template v-slot:icon="{ classes }">
         <div class="i-heroicons:chat-bubble-left-ellipsis" :class="classes" />
       </template>
-      <template v-slot> {{ tweet.repliesCount }} </template>
+      <template v-if="showStats" v-slot> {{ tweet.repliesCount }} </template>
     </TweetItemActionsIcon>
-    <TweetItemActionsIcon color="green">
+    <TweetItemActionsIcon color="green" :size="size">
       <template v-slot:icon="{ classes }">
         <div class="i-heroicons:arrow-path-rounded-square" :class="classes" />
       </template>
-      <template v-slot> {{ generateRandomNumber() }} </template>
+      <template v-if="showStats" v-slot>
+        {{ generateRandomNumber() }}
+      </template>
     </TweetItemActionsIcon>
-    <TweetItemActionsIcon color="red">
+    <TweetItemActionsIcon color="red" :size="size">
       <template v-slot:icon="{ classes }">
         <div class="i-heroicons:heart" :class="classes" />
       </template>
-      <template v-slot> {{ generateRandomNumber() }} </template>
+      <template v-if="showStats" v-slot>
+        {{ generateRandomNumber() }}
+      </template>
     </TweetItemActionsIcon>
-    <TweetItemActionsIcon color="blue">
+    <TweetItemActionsIcon color="blue" :size="size">
       <template v-slot:icon="{ classes }">
         <div class="i-heroicons:arrow-up-tray" :class="classes" />
       </template>
-      <template v-slot> {{ generateRandomNumber() }} </template>
+      <template v-if="showStats" v-slot>
+        <span>
+          {{ generateRandomNumber() }}
+        </span>
+      </template>
     </TweetItemActionsIcon>
   </div>
 </template>

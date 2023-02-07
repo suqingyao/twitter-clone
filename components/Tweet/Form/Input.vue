@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-const { user } = defineProps<{
+const { user, placeholder = `What's happening?` } = defineProps<{
   user: {
     profileImage: string
   }
+  placeholder?: string
 }>()
 
 const emits = defineEmits<{
@@ -27,8 +28,8 @@ const handleImageClick = () => {
   imageInput.value!.click()
 }
 
-const handleImageChange = (event: Event) => {
-  const file = event.target?.files[0]
+const handleImageChange = (event: InputEvent) => {
+  const file = (event.target as HTMLInputElement).files![0]
   selectedFile.value = file
 
   const reader = new FileReader()
@@ -52,7 +53,7 @@ const handleImageChange = (event: Event) => {
       <div class="w-full p-2">
         <textarea
           v-model="text"
-          placeholder="What's on your mind?"
+          :placeholder="placeholder"
           class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-none dark:text-white focus:ring outline-none p-1"
         />
       </div>

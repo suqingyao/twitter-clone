@@ -2,8 +2,15 @@
 import { Tweet } from '@prisma/client'
 
 const { getTweetById } = useTweets()
+const { useAuthUser } = useAuth()
+const user = useAuthUser()
 const loading = ref(false)
 const tweet = ref<Tweet | null>(null)
+
+watch(
+  () => useRoute().fullPath,
+  () => getTweet()
+)
 
 onBeforeMount(() => {
   getTweet()
@@ -32,6 +39,7 @@ const getTweet = async () => {
       <Head>
         <Title>Home / Twitter</Title>
       </Head>
+      <TweetDetails :tweet="tweet" :user="user" />
     </MainSection>
   </div>
 </template>
