@@ -2,10 +2,14 @@
 defineOptions({
   name: 'SidebarLeft'
 })
+
+const emits = defineEmits<{
+  (event: 'on-tweet'): void
+}>()
 </script>
 
 <template>
-  <div class="flex h-screen flex-col">
+  <div class="flex h-screen flex-col text-center">
     <div
       class="my-2 w-min rounded-full p-2 hover:bg-blue-50 dark:hover:bg-white/20 default-transition"
     >
@@ -71,13 +75,13 @@ defineOptions({
       </SidebarLeftTab>
 
       <div class="hidden xl:block">
-        <UIButton liquid size="lg">
+        <UIButton liquid size="lg" @on-click="emits('on-tweet')">
           <span class="font-bold">Tweet</span>
         </UIButton>
       </div>
       <div class="block xl:hidden">
-        <UIButton size="sm">
-          <div class="font-bold">
+        <UIButton size="sm" @on-click="emits('on-tweet')">
+          <div class="font-bold text-xl">
             <div class="i-heroicons-pencil" />
           </div>
         </UIButton>
@@ -85,5 +89,3 @@ defineOptions({
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped></style>

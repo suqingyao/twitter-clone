@@ -16,11 +16,11 @@ const emits = defineEmits<{
 const paddingClasses = computed(() => {
   switch (size) {
     case 'sm':
-      return 'px-3 py-2'
+      return 'px-3 py-3'
     case 'lg':
-      return 'px-5 py-2'
+      return 'px-5 py-3'
     default:
-      return 'px-4 py-2'
+      return 'px-4 py-3'
   }
 })
 
