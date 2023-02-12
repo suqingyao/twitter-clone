@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@iconify-json/heroicons": "^1.1.8",
+    "@nuxt/devtools": "^0.1.2",
     "@prisma/client": "^4.9.0",
     "@types/bcrypt": "^5.0.0",
     "@types/formidable": "^2.0.5",
@@ -22,12 +23,15 @@
     "prisma": "^4.9.0"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.9",
+    "@vueuse/core": "^9.12.0",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.33.0",
     "date-fns": "^2.29.3",
     "formidable": "^2.1.1",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
+    "mitt": "^3.0.0",
     "url-pattern": "^1.0.3"
   }
 }

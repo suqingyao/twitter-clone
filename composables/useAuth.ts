@@ -1,4 +1,4 @@
-import jwtDecode from 'jwt-decode'
+import jwtDecode, { JwtPayload } from 'jwt-decode'
 import { userTransformer } from '~~/server/transformers/user'
 import useFetchApi from './useFetchApi'
 
@@ -62,7 +62,8 @@ export default () => {
   const getUser = () => {
     return new Promise(async (resolve, reject) => {
       try {
-        const data = await useFetchApi('/api/auth/refresh')
+        const data = await useFetchApi('/api/auth/user')
+        console.log('🚀 ~ file: useAuth.ts:66 ~ returnnewPromise ~ data', data)
         setUser(data.user)
         resolve(true)
       } catch (error) {
@@ -76,13 +77,9 @@ export default () => {
     if (!authToken.value) {
       return
     }
-    const jwt = jwtDecode(authToken.value as string) as {
-      exp: number
-      iat: number
-      userId: string
-    }
+    const jwt = jwtDecode(authToken.value as string) as JwtPayload
 
-    const newRefreshTime = jwt.exp - 60000
+    const newRefreshTime = jwt.exp! - 60000
 
     setTimeout(async () => {
       await refreshToken()

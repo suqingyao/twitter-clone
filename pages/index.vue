@@ -2,6 +2,10 @@
 import { Tweet } from '@prisma/client'
 const { getHomeTweets } = useTweets()
 
+defineOptions({
+  name: 'Main'
+})
+
 let loading = ref(false)
 const homeTweets = ref<Tweet[]>([])
 
@@ -19,6 +23,12 @@ onBeforeMount(async () => {
     loading.value = false
   }
 })
+
+const handleFormSuccess = (tweet: Tweet) => {
+  navigateTo({
+    path: `/status/${tweet.id}`
+  })
+}
 </script>
 
 <template>
@@ -28,7 +38,7 @@ onBeforeMount(async () => {
     </Head>
 
     <div class="border-b twitter-border-color">
-      <TweetForm :user="user" />
+      <TweetForm :user="user" @on-success="handleFormSuccess" />
     </div>
 
     <TweetListFeed :tweets="homeTweets" />

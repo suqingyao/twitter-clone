@@ -1,20 +1,26 @@
 <script lang="ts" setup>
 import { Tweet } from '@prisma/client'
 
+defineOptions({
+  name: 'TweetForm'
+})
+
 const loading = ref(false)
 
 const {
   user,
-  placeholder,
-  replyTo = {}
+  placeholder = `What's happening?`,
+  replyTo = null,
+  showReply = false
 } = defineProps<{
   user: {
     profileImage: string
     name: string
     username: string
   }
-  placeholder: string
+  placeholder?: string
   replyTo?: Tweet
+  showReply?: boolean
 }>()
 
 const emits = defineEmits<{
@@ -37,13 +43,6 @@ const handleFormSubmit = async (data: {
     })
 
     emits('on-success', response.tweet)
-    console.log(
-      '%cMyProject%cline:29%cresponse',
-      'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
-      'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
-      'color:#fff;background:rgb(227, 160, 93);padding:3px;border-radius:2px',
-      response
-    )
   } catch (error) {
     console.log(error)
   } finally {
@@ -58,6 +57,7 @@ const handleFormSubmit = async (data: {
       <UISpinner />
     </div>
     <div v-else>
+      <TweetItem :tweet="replyTo" v-if="replyTo && showReply" hidden-actions />
       <TweetFormInput
         :user="user"
         @on-submit="handleFormSubmit"

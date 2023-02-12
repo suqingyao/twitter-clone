@@ -6,6 +6,10 @@ const { tweet, compact = false } = defineProps<{
   compact?: boolean
 }>()
 
+const emits = defineEmits<{
+  (event: 'on-comment-click'): void
+}>()
+
 const generateRandomNumber = () => {
   return Math.floor(Math.random() * 100)
 }
@@ -16,7 +20,11 @@ const size = computed(() => (compact ? 5 : 8))
 </script>
 <template>
   <div class="flex items-center justify-around w-full">
-    <TweetItemActionsIcon color="blue" :size="size">
+    <TweetItemActionsIcon
+      color="blue"
+      :size="size"
+      @on-click="emits('on-comment-click')"
+    >
       <template v-slot:icon="{ classes }">
         <div class="i-heroicons:chat-bubble-left-ellipsis" :class="classes" />
       </template>

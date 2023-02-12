@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const formData = reactive({
-  username: '',
-  password: '',
+  username: 'cullyfung',
+  password: 'wqra',
   loading: false
 })
 
@@ -19,6 +19,10 @@ const handleLogin = async () => {
     formData.loading = false
   }
 }
+
+onMounted(() => {
+  handleLogin()
+})
 </script>
 
 <template>

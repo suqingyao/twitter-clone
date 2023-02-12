@@ -1,9 +1,28 @@
 import { Tweet } from '@prisma/client'
 
 export default () => {
+  const usePostTweetModal = () => useState('post_tweet_modal', () => false)
+  const useReplyTweet = () => useState('reply_tweet', () => ({}))
+
+  const closePostTweetModal = () => {
+    const postTweetModal = usePostTweetModal()
+    postTweetModal.value = false
+  }
+
+  const openPostTweetModal = (tweet: Tweet) => {
+    const postTweetModal = usePostTweetModal()
+    postTweetModal.value = true
+    setReplyTo(tweet)
+  }
+
+  const setReplyTo = (tweet: Tweet) => {
+    const replyTweet = useReplyTweet()
+    replyTweet.value = tweet
+  }
+
   const postTweet = (formData: {
     text: string
-    replyTo: any
+    replyTo: string
     mediaFiles: File[]
   }) => {
     const form = new FormData()
@@ -23,8 +42,7 @@ export default () => {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await useFetchApi('/api/tweets')
-        console.log(response)
-        resolve(response as { tweets: Tweet })
+        resolve(response)
       } catch (error) {
         reject(error)
       }
@@ -45,6 +63,10 @@ export default () => {
   return {
     postTweet,
     getHomeTweets,
-    getTweetById
+    getTweetById,
+    closePostTweetModal,
+    openPostTweetModal,
+    usePostTweetModal,
+    useReplyTweet
   }
 }

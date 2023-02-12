@@ -13,7 +13,7 @@ export default defineConfig({
     presetWebFonts({
       provider: 'google',
       fonts: {
-        sans: 'DM Sans'
+        sans: 'Lato'
       }
     })
   ],

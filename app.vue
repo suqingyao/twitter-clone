@@ -1,16 +1,47 @@
 <script lang="ts" setup>
+import { Tweet } from '@prisma/client'
+
 const darkMode = ref(false)
 const { useAuthUser, initAuth, useAuthLoading } = useAuth()
 const isAuthLoading = useAuthLoading()
 const user = useAuthUser()
+const {
+  closePostTweetModal,
+  openPostTweetModal,
+  usePostTweetModal,
+  useReplyTweet
+} = useTweets()
+
+const postTweetModal = usePostTweetModal()
+const emitter = useEmitter()
+const replyTweet = useReplyTweet()
+
+emitter.$on('replyTweet', (tweet: any) => {
+  openPostTweetModal(tweet)
+})
 
 onBeforeMount(() => {
   initAuth()
 })
+
+const handleOpenTweetModal = () => {
+  openPostTweetModal({} as Tweet)
+}
+
+const handleModalClose = () => {
+  closePostTweetModal()
+}
+
+const handleFormSuccess = (tweet: Tweet) => {
+  closePostTweetModal()
+  navigateTo({
+    path: `/status/${tweet.id}`
+  })
+}
 </script>
 
 <template>
-  <div :class="{ dark: darkMode }">
+  <div id="app" :class="{ dark: darkMode }">
     <div class="bg-white dark:bg-dim-900">
       <LoadingPage v-if="isAuthLoading" />
 
@@ -22,7 +53,7 @@ onBeforeMount(() => {
           <!-- LEFT SIDEBAR -->
           <div class="hidden md:block xs:col-span-1 xl:col-span-2">
             <div class="sticky top-0">
-              <SidebarLeft />
+              <SidebarLeft @on-tweet="handleOpenTweetModal" />
             </div>
           </div>
           <!-- MAIN CONTENT -->
@@ -37,9 +68,17 @@ onBeforeMount(() => {
           </div>
         </div>
       </div>
-
-      <!--  -->
+      <!-- Unauthorized -->
       <AuthPage v-else />
     </div>
+    <!-- Tweet Modal -->
+    <UIModal :is-open="postTweetModal" @on-close="handleModalClose">
+      <TweetForm
+        :reply-to="(replyTweet as Tweet)"
+        show-reply
+        :user="(user as any)"
+        @on-success="handleFormSuccess"
+      />
+    </UIModal>
   </div>
 </template>

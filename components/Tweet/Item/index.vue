@@ -1,12 +1,23 @@
 <script lang="ts" setup>
-const { tweet, compact = false } = defineProps<{
+const {
+  tweet,
+  compact = false,
+  hiddenActions = false
+} = defineProps<{
   tweet: any
   compact?: boolean
+  hiddenActions?: boolean
 }>()
+
+const emitter = useEmitter()
 
 const tweetBodyWrapper = computed(() => (compact ? 'ml-16' : 'ml-2 mt-4'))
 
 const textSize = computed(() => (compact ? 'text-base' : 'text-2xl'))
+
+const handleCommentClick = () => {
+  emitter.$emit('replyTweet', tweet)
+}
 </script>
 
 <template>
@@ -26,8 +37,12 @@ const textSize = computed(() => (compact ? 'text-base' : 'text-2xl'))
       >
         <img :src="image.url" alt="" class="w-full rounded-2xl" />
       </div>
-      <div class="mt-2">
-        <TweetItemActions :tweet="tweet" :compact="compact" />
+      <div class="mt-2" v-if="!hiddenActions">
+        <TweetItemActions
+          :tweet="tweet"
+          :compact="compact"
+          @on-comment-click="handleCommentClick"
+        />
       </div>
     </div>
   </div>
