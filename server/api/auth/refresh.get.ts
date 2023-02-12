@@ -1,4 +1,3 @@
-import { RefreshToken } from '@prisma/client'
 import { getRefreshTokenByToken } from '~~/server/db/refreshTokens'
 import { getUserById } from '~~/server/db/users'
 import { decodeRefreshToken } from '~~/server/utils/jwt'
@@ -28,10 +27,10 @@ export default defineEventHandler(async (event) => {
     )
   }
 
-  const token = decodeRefreshToken(refreshToken) as RefreshToken
+  const token = decodeRefreshToken(refreshToken)
 
   try {
-    const user = await getUserById(token.userId)
+    const user = await getUserById(token!.userId)
 
     const { accessToken } = generateTokens(user!)
     return {
@@ -45,9 +44,5 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Something went wrong'
       })
     )
-  }
-
-  return {
-    refresh_token: rToken
   }
 })

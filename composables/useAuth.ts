@@ -1,4 +1,3 @@
-import { RefreshToken } from '@prisma/client'
 import jwtDecode from 'jwt-decode'
 import { userTransformer } from '~~/server/transformers/user'
 import useFetchApi from './useFetchApi'
@@ -8,7 +7,7 @@ export default () => {
   const useAuthUser = () => useState('auth_user')
   const useAuthLoading = () => useState('auth_loading', () => true)
 
-  const setToken = (newToken: RefreshToken['token']) => {
+  const setToken = (newToken: string) => {
     const authToken = useAuthToken()
     authToken.value = newToken
   }
@@ -42,18 +41,17 @@ export default () => {
         setToken(data.access_token)
         setUser(data.user)
         resolve(true)
-        console.log('🚀🚀🚀🚀', data)
       } catch (error) {
         reject(error)
       }
     })
   }
 
-  const refreshToken = async () => {
+  const refreshToken = () => {
     return new Promise(async (resolve, reject) => {
       try {
         const data = await $fetch('/api/auth/refresh')
-        setToken(data.refresh_token!?.token)
+        setToken(data.access_token!)
         resolve(true)
       } catch (error) {
         reject(error)
@@ -61,11 +59,11 @@ export default () => {
     })
   }
 
-  const getUser = async () => {
+  const getUser = () => {
     return new Promise(async (resolve, reject) => {
       try {
         const data = await useFetchApi('/api/auth/refresh')
-        setUser((data as any).user)
+        setUser(data.user)
         resolve(true)
       } catch (error) {
         reject(error)
@@ -73,7 +71,7 @@ export default () => {
     })
   }
 
-  const reRefreshAccessToken = async () => {
+  const reRefreshAccessToken = () => {
     const authToken = useAuthToken()
     if (!authToken.value) {
       return

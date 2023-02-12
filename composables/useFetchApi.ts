@@ -1,4 +1,4 @@
-export default (url: string, options?: any) => {
+export default (url: string, options?: any): Promise<any> => {
   const { useAuthToken } = useAuth()
   return $fetch(url, {
     ...options,

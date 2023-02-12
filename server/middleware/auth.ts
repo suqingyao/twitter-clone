@@ -1,4 +1,3 @@
-import { RefreshToken } from '@prisma/client'
 import { H3Event } from 'h3'
 import UrlPattern from 'url-pattern'
 import { getUserById } from '../db/users'
@@ -24,7 +23,7 @@ export default defineEventHandler(async (event: H3Event) => {
 
   const token = event.node.req.headers['authorization']?.split(' ')[1]
 
-  const decoded = decodeAccessToken(token!) as RefreshToken
+  const decoded = decodeAccessToken(token!)
 
   if (!decoded) {
     return sendError(

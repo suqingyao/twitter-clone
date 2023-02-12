@@ -4,43 +4,31 @@ import jwt from 'jsonwebtoken'
 
 const generateAccessToken = (user: User) => {
   const config = useRuntimeConfig()
-  return jwt.sign(
-    {
-      userId: user.id
-    },
-    config.jwtAccessSecret,
-    {
-      expiresIn: '10m'
-    }
-  )
+  return jwt.sign({ userId: user.id }, config.jwtRefreshSecret, {
+    expiresIn: '4h'
+  })
 }
 
 const generateRefreshToken = (user: User) => {
   const config = useRuntimeConfig()
-  return jwt.sign(
-    {
-      userId: user.id
-    },
-    config.jwtAccessSecret,
-    {
-      expiresIn: '4h'
-    }
-  )
+  return jwt.sign({ userId: user.id }, config.jwtRefreshSecret, {
+    expiresIn: '4h'
+  })
 }
 
-export const decodeRefreshToken = (token: RefreshToken['token']) => {
+export const decodeRefreshToken = (token: string): RefreshToken | null => {
   const config = useRuntimeConfig()
   try {
-    return jwt.verify(token, config.jwtRefreshSecret)
+    return jwt.verify(token, config.jwtRefreshSecret) as RefreshToken
   } catch (error) {
     return null
   }
 }
 
-export const decodeAccessToken = (token: RefreshToken['token']) => {
+export const decodeAccessToken = (token: string): RefreshToken | null => {
   const config = useRuntimeConfig()
   try {
-    return jwt.verify(token, config.jwtAccessSecret)
+    return jwt.verify(token, config.jwtAccessSecret) as RefreshToken
   } catch (error) {
     return null
   }
@@ -56,10 +44,7 @@ export const generateTokens = (user: User) => {
   }
 }
 
-export const sendRefreshToken = (
-  event: H3Event,
-  token: RefreshToken['token']
-) => {
+export const sendRefreshToken = (event: H3Event, token: string) => {
   setCookie(event, 'refresh_token', token, {
     httpOnly: true,
     sameSite: true
