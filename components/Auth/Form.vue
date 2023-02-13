@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const formData = reactive({
-  username: 'cullyfung',
-  password: 'wqra',
+  username: '',
+  password: '',
   loading: false
 })
 
