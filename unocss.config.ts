@@ -9,7 +9,9 @@ import {
 export default defineConfig({
   presets: [
     presetUno(),
-    presetIcons(),
+    presetIcons({
+      scale: 1.2
+    }),
     presetWebFonts({
       provider: 'google',
       fonts: {

@@ -5,6 +5,10 @@ const formData = reactive({
   loading: false
 })
 
+const isButtonDisabled = computed(() => {
+  return !formData.username || !formData.password || formData.loading
+})
+
 const handleLogin = async () => {
   const { login } = useAuth()
   formData.loading = true
@@ -26,7 +30,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="w-full">
+    <div class="flex justify-center">
+      <div class="w-10 h-10">
+        <LogoTwitter />
+      </div>
+    </div>
     <div class="pt-5 space-y-6">
       <UIInput
         v-model="formData.username"
@@ -39,9 +48,9 @@ onMounted(() => {
         placeholder="@password"
         type="password"
       />
-      <div>
-        <button type="button" @click="handleLogin">Login</button>
-      </div>
+      <UIButton liquid :disabled="isButtonDisabled" @click="handleLogin">
+        Login
+      </UIButton>
     </div>
   </div>
 </template>

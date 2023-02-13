@@ -2,7 +2,7 @@
 import { Tweet } from '@prisma/client'
 
 const darkMode = ref(false)
-const { useAuthUser, initAuth, useAuthLoading } = useAuth()
+const { useAuthUser, initAuth, useAuthLoading, logout } = useAuth()
 const isAuthLoading = useAuthLoading()
 const user = useAuthUser()
 const {
@@ -18,6 +18,10 @@ const replyTweet = useReplyTweet()
 
 emitter.$on('replyTweet', (tweet: any) => {
   openPostTweetModal(tweet)
+})
+
+emitter.$on('toggleDarkMode', (value: any) => {
+  darkMode.value = value
 })
 
 onBeforeMount(() => {
@@ -38,6 +42,10 @@ const handleFormSuccess = (tweet: Tweet) => {
     path: `/status/${tweet.id}`
   })
 }
+
+const handleUserLogout = () => {
+  logout()
+}
 </script>
 
 <template>
@@ -53,7 +61,11 @@ const handleFormSuccess = (tweet: Tweet) => {
           <!-- LEFT SIDEBAR -->
           <div class="hidden md:block xs:col-span-1 xl:col-span-2">
             <div class="sticky top-0">
-              <SidebarLeft @on-tweet="handleOpenTweetModal" />
+              <SidebarLeft
+                :user="user"
+                @on-tweet="handleOpenTweetModal"
+                @on-logout="handleUserLogout"
+              />
             </div>
           </div>
           <!-- MAIN CONTENT -->

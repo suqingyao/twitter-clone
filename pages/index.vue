@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Tweet } from '@prisma/client'
-const { getHomeTweets } = useTweets()
+const { getTweets } = useTweets()
 
 defineOptions({
   name: 'Main'
@@ -15,8 +15,8 @@ const user = <any>useAuthUser()
 onBeforeMount(async () => {
   loading.value = true
   try {
-    const { tweets } = await getHomeTweets()
-    homeTweets.value = tweets as any
+    const { tweets } = await getTweets()
+    homeTweets.value = tweets
   } catch (error) {
     console.error(error)
   } finally {

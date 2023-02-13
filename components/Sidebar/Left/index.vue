@@ -3,8 +3,13 @@ defineOptions({
   name: 'SidebarLeft'
 })
 
+const { user } = defineProps<{
+  user: any
+}>()
+
 const emits = defineEmits<{
   (event: 'on-tweet'): void
+  (event: 'on-logout'): void
 }>()
 </script>
 
@@ -17,6 +22,7 @@ const emits = defineEmits<{
         <LogoTwitter class="h-8 w-8" />
       </NuxtLink>
     </div>
+
     <div class="mt-2 space-y-3">
       <SidebarLeftTab active>
         <template #icon>
@@ -85,6 +91,31 @@ const emits = defineEmits<{
             <div class="i-heroicons-pencil" />
           </div>
         </UIButton>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800 default-transition"
+      @click="emits('on-logout')"
+    >
+      <div class="flex flex-row">
+        <img
+          :src="user.profileImage"
+          alt="avatar"
+          class="w-10 h-10 rounded-full"
+        />
+        <div class="flex hidden ml-2 xl:block">
+          <h1 class="text-sm font-bold text-gray-800">
+            {{ user.name }}
+          </h1>
+          <p class="text-sm text-gray-400">
+            {{ user.handle }}
+          </p>
+        </div>
+      </div>
+      <!-- Icon -->
+      <div class="hidden ml-auto xl:block">
+        <div class="i-heroicons:ellipsis-horizontal-20-solid" />
       </div>
     </div>
   </div>
