@@ -23,10 +23,6 @@ const handleLogin = async () => {
     formData.loading = false
   }
 }
-
-onMounted(() => {
-  handleLogin()
-})
 </script>
 
 <template>
